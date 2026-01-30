@@ -101,8 +101,14 @@ fullscreen = 0
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 31
+
+# ANDROID FIX
+android.api = 31
+android.minapi = 21
+android.sdk = 31
+android.ndk = 25b
 android.api = 33
+# CLAVE: forzar build-tools compatible
 android.build_tools_version = 33.0.2
 
 
