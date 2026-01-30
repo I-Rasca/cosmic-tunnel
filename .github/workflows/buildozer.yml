@@ -23,7 +23,8 @@ jobs:
         sudo apt install -y \
           openjdk-17-jdk \
           unzip zip \
-          libncurses5
+          libncurses6 \
+          libncurses-dev
 
     # 🔑 CLAVE: instalar SDK manualmente
     - name: Install Android SDK cmdline-tools
