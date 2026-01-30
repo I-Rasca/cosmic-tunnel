@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04   # 🔑 más estable que latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repo
@@ -17,26 +17,23 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install system dependencies
+    - name: Install system deps
       run: |
         sudo apt update
         sudo apt install -y \
           openjdk-17-jdk \
-          zip unzip \
+          unzip zip \
           libncurses6 \
           libncurses-dev \
           libffi-dev \
           libssl-dev \
-          autoconf \
-          libtool \
-          pkg-config
+          zlib1g-dev
 
     - name: Install Buildozer
       run: |
         pip install --upgrade pip
         pip install buildozer cython
 
-    # ❗ NO init, el spec ya existe
     - name: Build APK
       run: |
         buildozer android debug
