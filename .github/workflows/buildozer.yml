@@ -32,6 +32,11 @@ jobs:
 
     - name: Build APK
       run: |
+        - name: HARD RESET buildozer cache
+      run: |
+        rm -rf ~/.buildozer
+        rm -rf .buildozer
+
         buildozer android debug
 
 
