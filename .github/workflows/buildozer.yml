@@ -8,6 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+      ANDROID_HOME: /usr/local/lib/android/sdk
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -30,26 +34,23 @@ jobs:
         pip install --upgrade pip
         pip install buildozer cython
 
-    # Primer build: descarga SDK/NDK (puede fallar)
-    - name: First Android build (expected to fail)
-      run: |
-        buildozer android debug || true
-
-    # Aceptar licencias DEL SDK QUE INSTALÓ buildozer
     - name: Accept Android SDK licenses
       run: |
-        yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+        yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 
-    # Build real
-    - name: Final Android build
+    - name: Install required Android SDK packages
+      run: |
+        $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
+          "platform-tools" \
+          "platforms;android-33" \
+          "build-tools;33.0.2"
+
+    - name: Build APK
       run: |
         buildozer android debug
 
-    # Subir APK como artifact
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: cosmic-tunnel-apk
         path: bin/*.apk
-
-
