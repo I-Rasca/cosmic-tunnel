@@ -29,12 +29,12 @@ jobs:
     # 🔑 CLAVE: instalar SDK manualmente
     - name: Install Android SDK cmdline-tools
       run: |
-        mkdir -p $HOME/android-sdk/cmdline-tools
+        mkdir -p $HOME/android-sdk
         cd $HOME/android-sdk
         wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
         unzip -q commandlinetools-linux-9477386_latest.zip
         mkdir -p cmdline-tools/latest
-        mv cmdline-tools/* cmdline-tools/latest/
+        mv cmdline-tools/cmdline-tools/* cmdline-tools/latest/
 
     - name: Set Android env
       run: |
