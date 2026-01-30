@@ -102,15 +102,10 @@ fullscreen = 0
 
 # (int) Target Android API, should be as high as possible.
 
-# ANDROID FIX
-#android.api = 31
-android.minapi = 21
-android.sdk = 31
-android.ndk = 25b
+# ANDROID CONFIG (CI SAFE)
 android.api = 33
-# CLAVE: forzar build-tools compatible
-android.build_tools_version = 33.0.2
-android.sdk_path = /usr/local/lib/android/sdk
+android.minapi = 21
+android.ndk = 25b
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21
