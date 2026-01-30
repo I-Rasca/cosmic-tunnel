@@ -34,10 +34,10 @@ orientation = portrait
 # Android CONFIG — ESTABLE / CI SAFE
 # -----------------------------------------------------------------------------
 
-android.api = 31
 android.minapi = 21
+android.api = 33
 android.ndk = 25b
-android.build_tools_version = 30.0.3
+android.build_tools_version = 33.0.2
 
 
 # Arquitecturas comunes
