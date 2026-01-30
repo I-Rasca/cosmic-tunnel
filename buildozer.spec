@@ -13,11 +13,18 @@ orientation = portrait
 fullscreen = 1
 
 # ---------- ANDROID (ESTABLE) ----------
+[app]
+
 android.minapi = 21
 android.api = 31
+android.ndk = 25b
 
-# 🔑 CLAVE: fijar build-tools viejos y compatibles
+# 🔒 CLAVE ABSOLUTA
 android.build_tools_version = 30.0.3
+
+# ❌ NO pongas android.sdk_path en CI
+# Buildozer gestiona su propio SDK
+
 
 # 🔑 CLAVE: NDK recomendado por p4a
 android.ndk = 25b
