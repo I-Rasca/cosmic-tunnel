@@ -34,15 +34,11 @@ orientation = portrait
 # Android CONFIG — ESTABLE / CI SAFE
 # -----------------------------------------------------------------------------
 
-# API estable (evita SDK 34–36)
 android.api = 31
 android.minapi = 21
-
-# NDK recomendado por python-for-android
 android.ndk = 25b
-
-# Build-tools ESTABLE (no 36.x)
 android.build_tools_version = 30.0.3
+
 
 # Arquitecturas comunes
 android.archs = arm64-v8a,armeabi-v7a
