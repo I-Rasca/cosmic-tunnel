@@ -17,7 +17,7 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Install system deps
+    - name: Install system dependencies
       run: |
         sudo apt update
         sudo apt install -y \
@@ -26,33 +26,45 @@ jobs:
           libncurses6 \
           libncurses-dev
 
-    # 🔑 CLAVE: instalar SDK manualmente
+    # 🔑 Instalar Android SDK cmdline-tools (robusto)
     - name: Install Android SDK cmdline-tools
       run: |
         mkdir -p $HOME/android-sdk
         cd $HOME/android-sdk
+
         wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
         unzip -q commandlinetools-linux-9477386_latest.zip
-        mkdir -p cmdline-tools/latest
-        mv cmdline-tools/cmdline-tools/* cmdline-tools/latest/
 
-    - name: Set Android env
+        mkdir -p cmdline-tools/latest
+
+        if [ -d "cmdline-tools/bin" ]; then
+          mv cmdline-tools/* cmdline-tools/latest/
+        elif [ -d "cmdline-tools/cmdline-tools/bin" ]; then
+          mv cmdline-tools/cmdline-tools/* cmdline-tools/latest/
+        else
+          echo "❌ sdkmanager not found"
+          find . -maxdepth 4
+          exit 1
+        fi
+
+    - name: Set Android environment
       run: |
         echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
         echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> $GITHUB_ENV
         echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
         echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
 
-    - name: Accept SDK licenses
-      run: yes | sdkmanager --licenses
+    - name: Accept Android SDK licenses
+      run: |
+        yes | sdkmanager --licenses
 
-    # 🔑 ESTO ES LO QUE FALTABA
-    - name: Install REQUIRED build-tools
+    # 🔑 EXACTAMENTE las versiones que Buildozer necesita
+    - name: Install required Android SDK packages
       run: |
         sdkmanager \
           "platform-tools" \
-          "platforms;android-31" \
-          "build-tools;30.0.3"
+          "platforms;android-33" \
+          "build-tools;33.0.2"
 
     - name: Install Buildozer
       run: |
@@ -60,7 +72,8 @@ jobs:
         pip install buildozer cython
 
     - name: Build APK
-      run: buildozer android debug
+      run: |
+        buildozer android debug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
