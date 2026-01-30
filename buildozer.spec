@@ -1,57 +1,30 @@
 [app]
-
-# -----------------------------------------------------------------------------
-# App info
-# -----------------------------------------------------------------------------
 title = Cosmic Tunnel
 package.name = cosmictunnel
 package.domain = org.cosmic
 
-# -----------------------------------------------------------------------------
-# Source
-# -----------------------------------------------------------------------------
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas
-# NO incluir venv, bin ni build
-source.exclude_dirs = bin,venv,.buildozer,.git
+source.include_exts = py,png,jpg,kv
 
-# -----------------------------------------------------------------------------
-# Version
-# -----------------------------------------------------------------------------
 version = 0.1
-
-# -----------------------------------------------------------------------------
-# Requirements
-# -----------------------------------------------------------------------------
 requirements = python3,kivy
 
-# -----------------------------------------------------------------------------
-# UI
-# -----------------------------------------------------------------------------
 orientation = portrait
+fullscreen = 1
 
-# -----------------------------------------------------------------------------
-# Android CONFIG — ESTABLE / CI SAFE
-# -----------------------------------------------------------------------------
-
+# ---------- ANDROID (ESTABLE) ----------
 android.minapi = 21
-android.api = 33
-android.ndk = 25b
-android.build_tools_version = 33.0.2
+android.api = 31
 
+# 🔑 CLAVE: fijar build-tools viejos y compatibles
+android.build_tools_version = 30.0.3
+
+# 🔑 CLAVE: NDK recomendado por p4a
+android.ndk = 25b
+
+# Evita que intente cosas modernas raras
+android.skip_update = True
 
 # Arquitecturas comunes
 android.archs = arm64-v8a,armeabi-v7a
 
-# Evita downloads raros
-android.skip_update = True
-
-# -----------------------------------------------------------------------------
-# Permisos (ninguno por ahora)
-# -----------------------------------------------------------------------------
-android.permissions =
-
-# -----------------------------------------------------------------------------
-# Log level (útil para CI)
-# -----------------------------------------------------------------------------
-log_level = 2
