@@ -17,7 +17,6 @@ fullscreen = 1
 android.minapi = 21
 android.api = 31
 android.ndk = 25b
-android.build_tools_version = 30.0.3
 
 # ❌ NO pongas android.sdk_path en CI
 # Buildozer gestiona su propio SDK
