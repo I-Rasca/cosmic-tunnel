@@ -15,7 +15,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.10"
+        python-version: '3.10'
 
     - name: Install system dependencies
       run: |
@@ -25,18 +25,12 @@ jobs:
           autoconf libtool pkg-config \
           zlib1g-dev libncurses5-dev libffi-dev libssl-dev
 
-    - name: Install Buildozer and p4a
+    - name: Install Buildozer
       run: |
         pip install --upgrade pip
         pip install buildozer cython
 
-    # 🔑 CLAVE ABSOLUTA: forzar p4a a usar SDK interno compatible
     - name: Build APK (Buildozer manages SDK/NDK)
-      env:
-        P4A_RELEASE_KEYSTORE: ""
-        P4A_RELEASE_KEYSTORE_PASSWD: ""
-        P4A_RELEASE_KEY_ALIAS: ""
-        P4A_RELEASE_KEY_ALIAS_PASSWD: ""
       run: |
         buildozer android debug
 
