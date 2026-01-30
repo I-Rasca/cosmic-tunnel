@@ -32,7 +32,7 @@ jobs:
 
     - name: Accept Android SDK licenses
        run: |
-         yes | sdkmanager --licenses || true
+        yes | sdkmanager --licenses || true
     
 
     - name: Initialize Buildozer
