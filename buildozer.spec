@@ -25,9 +25,6 @@ android.build_tools_version = 30.0.3
 # Buildozer gestiona su propio SDK
 
 
-# 🔑 CLAVE: NDK recomendado por p4a
-android.ndk = 25b
-
 # Evita que intente cosas modernas raras
 android.skip_update = True
 
