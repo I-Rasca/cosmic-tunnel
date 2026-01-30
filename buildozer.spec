@@ -110,7 +110,7 @@ android.ndk = 25b
 android.api = 33
 # CLAVE: forzar build-tools compatible
 android.build_tools_version = 33.0.2
-
+android.sdk_path = /usr/local/lib/android/sdk
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21
