@@ -13,7 +13,6 @@ orientation = portrait
 fullscreen = 1
 
 # ---------- ANDROID (ESTABLE) ----------
-[app]
 
 android.minapi = 21
 android.api = 31
