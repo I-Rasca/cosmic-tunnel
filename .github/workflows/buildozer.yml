@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build APK
+        env:
+          BUILDOZER_DISABLE_ROOT_WARNING: "1"
         run: |
           buildozer android debug
 
@@ -25,3 +27,4 @@ jobs:
         with:
           name: cosmic-tunnel-apk
           path: bin/*.apk
+
