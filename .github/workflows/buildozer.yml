@@ -7,23 +7,22 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     container:
-      image: kivy/buildozer:2023.10.06
+      image: kivy/buildozer:latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Build APK
-        env:
-          BUILDOZER_DISABLE_ROOT_WARNING: 1
         run: |
-          buildozer android debug
+          yes | buildozer android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: cosmic-tunnel-apk
           path: bin/*.apk
+
