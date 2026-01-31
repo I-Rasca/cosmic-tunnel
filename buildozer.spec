@@ -1,105 +1,88 @@
-[app]
+[buildozer]
+# Log level (0 = error only, 1 = warning, 2 = info, 3 = debug)
+log_level = 2
 
+# Buildozer build directory
+build_dir = .buildozer
+
+# If yes, buildozer will attempt to use ccache
+use_ccache = True
+
+
+[app]
 # (str) Title of your application
 title = Cosmic Tunnel
 
 # (str) Package name
 package.name = cosmictunnel
 
-# (str) Package domain (needed for android/ios packaging)
+# (str) Package domain (reverse DNS)
 package.domain = org.iraska
 
 # (str) Source code where the main.py is located
 source.dir = .
 
-# (list) Source files to include (let buildozer find them)
-source.include_exts = py,png,jpg,jpeg,kv,atlas,ttf,otf
+# (list) Source files to include
+source.include_exts = py,png,jpg,jpeg,kv
 
-# (list) List of inclusions using pattern matching
-# source.include_patterns = assets/*
+# (list) Source files to exclude
+source.exclude_exts = spec
 
-# (list) List of exclusions using pattern matching
-# source.exclude_patterns = tests/*,docs/*
-
-# (str) Application versioning
+# (str) Application version
 version = 0.1
 
-# (str) Supported orientations
-orientation = portrait
-
-# (bool) Indicate if the application should be fullscreen or not
-fullscreen = 1
-
-# (list) Application requirements
-# IMPORTANT: Python 3.10 forced for pyjnius compatibility
-requirements = python3==3.10,kivy
-
-# (str) Presplash image
-presplash.filename = data/presplash.png
-
-# (str) Icon of the application
-icon.filename = data/icon.png
+# (str) Application requirements
+requirements = python3,kivy
 
 # (str) Entry point
 entrypoint = main.py
 
+# (bool) Indicate if the application should be fullscreen or not
+fullscreen = 1
 
-# ------------------------------------------------------------------
-# ANDROID CONFIGURATION
-# ------------------------------------------------------------------
 
+[graphics]
+# (str) Supported orientations:
+# portrait, landscape, landscape-reverse, portrait-reverse
+orientation = portrait
+
+
+[android]
 # (int) Android API to use
 android.api = 33
 
-# (int) Minimum API your APK supports
+# (int) Minimum API your APK will support
 android.minapi = 21
 
 # (str) Android NDK version
 android.ndk = 25b
 
-# (list) Supported architectures
-android.archs = arm64-v8a, armeabi-v7a
+# (list) Architectures to build for
+android.archs = arm64-v8a,armeabi-v7a
 
-# (bool) Enable AndroidX
+# (bool) Enable AndroidX support
 android.enable_androidx = True
 
-# (list) Permissions
-android.permissions = INTERNET
+# (list) Extra Gradle dependencies
+android.gradle_dependencies = androidx.core:core-ktx:1.12.0
+
+# (bool) Allow application backup
+android.allow_backup = True
+
+# (bool) Copy libraries instead of symlinking
+android.copy_libs = True
 
 # (str) Android application theme
 android.apptheme = @android:style/Theme.NoTitleBar
 
-# (str) Build tools version (leave empty = auto)
-# android.build_tools_version =
+# (list) Permissions
+android.permissions = INTERNET
 
-# (str) Java source compatibility
-android.gradle_dependencies =
-
-# (bool) Copy libraries instead of linking
-android.copy_libs = True
+# (str) Icon and presplash (optional but recommended)
+icon.filename = data/icon.png
+presplash.filename = data/presplash.png
 
 
-# ------------------------------------------------------------------
-# PYTHON FOR ANDROID
-# ------------------------------------------------------------------
-
-# (str) python-for-android branch
-p4a.branch = stable
-
-# (str) python-for-android bootstrap
-p4a.bootstrap = sdl2
-
-# (bool) Ignore setup.py of dependencies
-p4a.ignore_setup_py = True
-
-
-# ------------------------------------------------------------------
-# LOGGING / DEBUG
-# ------------------------------------------------------------------
-
-# (int) Log level (0 = normal, 2 = very verbose)
-log_level = 1
-
-# (bool) Display debug logs
-debug = False
+[buildozer:android]
+# This section is intentionally left minimal and stable
 
