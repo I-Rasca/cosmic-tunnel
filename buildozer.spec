@@ -6,90 +6,100 @@ title = Cosmic Tunnel
 # (str) Package name
 package.name = cosmictunnel
 
-# (str) Package domain (needed for android)
+# (str) Package domain (needed for android/ios packaging)
 package.domain = org.iraska
 
-# (str) Source code where the main.py lives
+# (str) Source code where the main.py is located
 source.dir = .
 
-# (list) Source files to include
-source.include_exts = py,png,jpg,kv,atlas
+# (list) Source files to include (let buildozer find them)
+source.include_exts = py,png,jpg,jpeg,kv,atlas,ttf,otf
+
+# (list) List of inclusions using pattern matching
+# source.include_patterns = assets/*
+
+# (list) List of exclusions using pattern matching
+# source.exclude_patterns = tests/*,docs/*
 
 # (str) Application versioning
 version = 0.1
 
-# (list) Application requirements
-requirements = python3,kivy
-
-# (str) Presplash image
-presplash.filename = %(source.dir)s/data/presplash.png
-
-# (str) Icon of the application
-icon.filename = %(source.dir)s/data/icon.png
-
-# (str) Supported orientation (landscape / portrait)
+# (str) Supported orientations
 orientation = portrait
 
-# (bool) Fullscreen mode
+# (bool) Indicate if the application should be fullscreen or not
 fullscreen = 1
 
+# (list) Application requirements
+# IMPORTANT: Python 3.10 forced for pyjnius compatibility
+requirements = python3==3.10,kivy
 
-# -------------------------
-# ANDROID CONFIG
-# -------------------------
+# (str) Presplash image
+presplash.filename = data/presplash.png
 
-# (int) Android API to build against
+# (str) Icon of the application
+icon.filename = data/icon.png
+
+# (str) Entry point
+entrypoint = main.py
+
+
+# ------------------------------------------------------------------
+# ANDROID CONFIGURATION
+# ------------------------------------------------------------------
+
+# (int) Android API to use
 android.api = 33
 
-# (int) Minimum API your app supports
+# (int) Minimum API your APK supports
 android.minapi = 21
 
 # (str) Android NDK version
 android.ndk = 25b
 
-# (bool) Use AndroidX
-android.enable_androidx = 1
+# (list) Supported architectures
+android.archs = arm64-v8a, armeabi-v7a
+
+# (bool) Enable AndroidX
+android.enable_androidx = True
 
 # (list) Permissions
 android.permissions = INTERNET
 
-# (bool) Copy libs instead of linking
-android.copy_libs = 1
+# (str) Android application theme
+android.apptheme = @android:style/Theme.NoTitleBar
 
-# (str) Logcat filters
-android.logcat_filters = *:S python:D
+# (str) Build tools version (leave empty = auto)
+# android.build_tools_version =
 
+# (str) Java source compatibility
+android.gradle_dependencies =
 
-# -------------------------
-# BUILD OPTIONS
-# -------------------------
-
-# (bool) Enable debug symbols
-android.debuggable = 1
-
-# (bool) Enable OpenGL ES 2
-android.opengl_es = 2
+# (bool) Copy libraries instead of linking
+android.copy_libs = True
 
 
-# -------------------------
-# KIVY CONFIG
-# -------------------------
+# ------------------------------------------------------------------
+# PYTHON FOR ANDROID
+# ------------------------------------------------------------------
 
-# (str) Kivy version
-kivy.version = stable
+# (str) python-for-android branch
+p4a.branch = stable
 
-# (bool) Include SDL2
-android.include_sdl2 = 1
+# (str) python-for-android bootstrap
+p4a.bootstrap = sdl2
+
+# (bool) Ignore setup.py of dependencies
+p4a.ignore_setup_py = True
 
 
-# -------------------------
-# OTHER
-# -------------------------
+# ------------------------------------------------------------------
+# LOGGING / DEBUG
+# ------------------------------------------------------------------
 
-# (str) Path to main python file
-entrypoint = main.py
+# (int) Log level (0 = normal, 2 = very verbose)
+log_level = 1
 
-# (bool) Use legacy packaging
-android.use_legacy_packaging = 0
-
+# (bool) Display debug logs
+debug = False
 
