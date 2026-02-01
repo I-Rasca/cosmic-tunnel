@@ -4,34 +4,30 @@ package.name = cosmictunnel
 package.domain = org.irascadev
 
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,kv,mp3
 
 version = 0.1
 
-requirements = python3,kivy
+requirements = python3==3.10.13,kivy
 
 orientation = portrait
-
 fullscreen = 1
 
-android.permissions = INTERNET
-
-android.api = 33
-android.minapi = 26
-android.sdk = 33
-android.ndk = 25b
-
-android.accept_sdk_license = True
-
-android.enable_androidx = True
-
-android.manifest.application_meta_data = \
-    android.app.lib_name:cosmictunnel
+icon.filename = data/icon.png
+presplash.filename = data/presplash.png
 
 log_level = 2
 
 [buildozer]
 log_level = 2
-warn_on_root = 1
+warn_on_root = 0
 
+[app:android]
+android.minapi = 21
+android.api = 33
+android.ndk = 25b
 
+android.arch = arm64-v8a,armeabi-v7a
+
+android.permissions = INTERNET
+android.enable_androidx = True
