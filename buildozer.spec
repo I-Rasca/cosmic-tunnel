@@ -8,7 +8,7 @@ source.include_exts = py,png,jpg,kv,mp3
 
 version = 0.1
 
-requirements = python3==3.10.13,kivy
+requirements = python3,kivy
 
 orientation = portrait
 fullscreen = 1
