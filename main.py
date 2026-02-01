@@ -1,7 +1,12 @@
 from kivy.config import Config
 Config.set('kivy', 'audio', 'ffpyplayer')
 
+import os
+os.environ["KIVY_GL_BACKEND"] = "angle_sdl2"
+
 from kivy.app import App
+# resto de imports
+
 from kivy.uix.widget import Widget
 from kivy.clock import Clock
 from kivy.core.window import Window
